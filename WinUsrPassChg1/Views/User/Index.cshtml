@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Change Password";
+}
+
+<h2>Change Password</h2>
+
+<p>
+    @TempData["Status"]
+</p>
+
+<script>
+    function validateValues() {
+        console.log("validateValues called");
+        var txtNewpass = document.getElementById('newpass');
+        var txtConfirm = document.getElementById('confirm');
+        if (txtNewpass.value != txtConfirm.value) {
+            alert('New password and confirm password fields must match');
+            console.log('New password and confirm password fields must match');
+            return false;
+        }
+        console.log("No issues to report");
+        return true;
+    }
+</script>
+
+<style>
+    label {
+        float: left; width: 180px;
+    }
+    form {
+        margin-top: 25px;
+    }
+    form > div {
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+    div#form-submit {
+        margin-left: 180px;
+    }
+    input[type~=text], input[type~=password] {
+        padding: 5px;
+        width: 220px;
+    }
+    input[type~=submit] {
+        font-size: 16pt;
+        margin-top: 25px;
+        width: 220px;
+    }
+</style>
+
+<form method="post" action='@Url.Action("ChangePassword")' onsubmit="validateValues()">
+    <div>
+        <label>
+            Username
+        </label>
+        <input type="text" id="username" name="username" placeholder="Username" required="required" />
+    </div>
+    <div>
+        <label>
+            Old Password
+        </label>
+        <input type="password" id="oldpass" name="oldpass" placeholder="Old Password" required="required" />
+    </div>
+    <div>
+        <label>
+            New Password
+        </label>
+        <input type="password" id="newpass" name="newpass" placeholder="New Password" required="required" />
+    </div>
+    <div>
+        <label>
+            Confirm New Password
+        </label>
+        <input type="password" id="confirm" name="confirm" placeholder="Confirm New Password" required="required" />
+    </div>
+    <div id="form-submit">
+        <input type="submit" value="Change Password" />
+    </div>
+</form>
+
